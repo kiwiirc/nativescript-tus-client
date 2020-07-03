@@ -1,14 +1,9 @@
 # nativescript-tus-client
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+This NativeScript plugin for TUS - Open Protocol for Resumable File Uploads.
+Uses [TUSKit (iOS)](https://github.com/tus/TUSKit) and [tus-android-client](https://github.com/tus/tus-android-client).
 
-Then describe what's the purpose of your plugin. 
 
-In case you develop UI plugin, this is where you can add some screenshots.
-
-## (Optional) Prerequisites / Requirements
-
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
 
 ## Installation
 
@@ -34,7 +29,20 @@ Describe your plugin methods and properties here. See [nativescript-feedback](ht
 | --- | --- | --- |
 | some property | property default value | property description, default values, etc.. |
 | another property | property default value | property description, default values, etc.. |
+
+## Test server
+
+We included a tus test server that will run at http://127.0.0.1:1080.
+
+```
+cd test-server
+npm run start
+```
     
+## Credits
+
+A big thanks to [coderReview](https://github.com/coderReview) for leading the way with his [nativescript-tus-upload](https://github.com/coderReview/nativescript-tus-upload).
+
 ## License
 
 Apache License Version 2.0, January 2004
