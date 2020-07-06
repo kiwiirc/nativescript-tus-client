@@ -1,19 +1,26 @@
 import * as fs from "tns-core-modules/file-system";
 import { UploadCommon, UploadOptions } from './tus-client.common';
+import { File } from "@nativescript/core";
 
 export class Upload extends UploadCommon {
     private store: TUSUploadStore;
     private tusSession: TUSResumableUpload;
 
-    constructor(file: string, options: UploadOptions) {
+    constructor(file: File, options: UploadOptions) {
         const UPLOAD_PATH = "tus_upload";
         super(file, options);
+
+        if (!File.exists(this.file.path)) {
+            this.options.onError(new Error(`File ${this.file} does not exist`));
+            return;
+        }
+
         let URL = NSURL.URLWithString(fs.path.join(fs.knownFolders.documents().path, UPLOAD_PATH));
         this.store = TUSFileUploadStore.alloc().initWithURL(URL);
 
-        const fileUrl = NSURL.fileURLWithPath(this.file);
+        const fileUrl = NSURL.fileURLWithPath(this.file.path);
         if (!fileUrl.checkResourceIsReachableAndReturnError()) {
-            this.options.onError(new Error(`file ${this.file} does not exist`));
+            this.options.onError(new Error(`File ${this.file} not reachable`));
             return;
         }
 
@@ -36,6 +43,7 @@ export class Upload extends UploadCommon {
         };
 
         this.tusSession.resultBlock = (url: NSURL) => {
+            this.url = url.absoluteString;
             this.options.onSuccess();
         };
 

@@ -1,8 +1,9 @@
+import { File } from "@nativescript/core";
+
 const defaultOptions: UploadOptions = {
   endpoint: null,
 
   metadata: {},
-  fingerprint: null,
   uploadSize: null,
 
   onProgress: null,
@@ -19,13 +20,15 @@ const defaultOptions: UploadOptions = {
 
 export abstract class UploadCommon {
   options: UploadOptions;
-  file: string;
+  file: File;
+  url: string | null;
 
-  constructor(file: string, options: UploadOptions) {
+  constructor(file: File, options: UploadOptions) {
     this.options = { ...defaultOptions, ...options };
-    this.file = file;
-  }
 
+    this.file = file;
+    this.url = null;
+  }
 
   abstract start(): void;
   abstract abort(): Promise<void>;
@@ -35,7 +38,6 @@ export interface UploadOptions {
   endpoint?: string | null;
 
   metadata?: { [key: string]: string };
-  fingerprint?: (file: File, options?: UploadOptions) => Promise<string>;
   uploadSize?: number | null;
 
   onProgress?: ((bytesSent: number, bytesTotal: number) => void) | null;
