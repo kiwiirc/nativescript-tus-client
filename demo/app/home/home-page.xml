@@ -6,7 +6,8 @@
         <Label text="Home"></Label>
     </ActionBar>
 
-    <GridLayout>
-        <!-- Add your page content here -->
+    <GridLayout rows="* auto auto *">
+        <Button row="1" tap="onTap" text="start upload!"></Button>
+        <Progress row="2" width="100%" value="{{ progressValue }}"  maxValue="100" loaded="onProgressLoaded" />
     </GridLayout>
 </Page>

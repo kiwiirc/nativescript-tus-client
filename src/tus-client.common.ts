@@ -1,35 +1,51 @@
-import { Observable } from 'tns-core-modules/data/observable';
-import * as app from 'tns-core-modules/application';
-import * as dialogs from 'tns-core-modules/ui/dialogs';
+const defaultOptions: UploadOptions = {
+  endpoint: null,
 
-export abstract class Common {
-  public message: string;
-  public message2: string;
-  public message3: string;
-  public message4: string;
+  metadata: {},
+  fingerprint: null,
+  uploadSize: null,
 
-  public abstract get(): string;
+  onProgress: null,
+  onChunkComplete: null,
+  onSuccess: null,
+  onError: null,
 
-  constructor() {
-    this.message = Utils.SUCCESS_MSG();
-    this.message2 = Utils.SUCCESS_MSG() + '2';
-    this.message3 = Utils.SUCCESS_MSG() + '3';
-    this.message4 = Utils.SUCCESS_MSG() + '4';
+  headers: {},
+
+  chunkSize: Infinity,
+  retryDelays: [0, 1000, 3000, 5000],
+  parallelUploads: 1,
+};
+
+export abstract class UploadCommon {
+  options: UploadOptions;
+  file: string;
+
+  constructor(file: string, options: UploadOptions) {
+    this.options = { ...defaultOptions, ...options };
+    this.file = file;
   }
 
-  public greet() {
-    return "Hello, NS";
-  }
+
+  abstract start(): void;
+  abstract abort(): Promise<void>;
 }
 
-export class Utils {
-  public static SUCCESS_MSG(): string {
-    let msg = `Your plugin is working on ${app.android ? 'Android' : 'iOS'}.`;
+export interface UploadOptions {
+  endpoint?: string | null;
 
-    setTimeout(() => {
-      dialogs.alert(`${msg} For real. It's really working :)`).then(() => console.log(`Dialog closed.`));
-    }, 2000);
+  metadata?: { [key: string]: string };
+  fingerprint?: (file: File, options?: UploadOptions) => Promise<string>;
+  uploadSize?: number | null;
 
-    return msg;
-  }
+  onProgress?: ((bytesSent: number, bytesTotal: number) => void) | null;
+  onChunkComplete?: ((chunkSize: number, bytesAccepted: number, bytesTotal: number) => void) | null;
+  onSuccess?: (() => void) | null;
+  onError?: ((error: Error) => void) | null;
+
+  headers?: { [key: string]: string };
+
+  chunkSize?: number;
+  retryDelays?: number[];
+  parallelUploads?: number;
 }
