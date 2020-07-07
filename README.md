@@ -7,37 +7,62 @@ Uses [TUSKit (iOS)](https://github.com/tus/TUSKit) and [tus-android-client](http
 
 ## Installation
 
-Describe your plugin installation steps. Ideally it would be something like:
-
-```javascript
+```bash
 tns plugin add nativescript-tus-client
 ```
 
 ## Usage 
 
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
-	
-	```javascript
-    Usage code snippets here
-    ```)
+```javascript
+import { File, Folder, knownFolders } from "@nativescript/core";
+import * as tus from "nativescript-tus-client";
+
+// create a File reference
+const file = File.fromPath(knownFolders.currentApp().path + 'assets/test_image.png');
+
+// Create a new tus upload
+var upload = new tus.Upload(file, {
+    endpoint: "http://192.168.1.118:1080/files/",
+    metadata: {
+        filename: 'test_image.png',
+        filetype: 'image/png'
+    },
+    onError: function(error) {
+        console.log("Failed because: " + error)
+    },
+    onProgress: function(bytesUploaded, bytesTotal) {
+        var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
+        console.log(bytesUploaded, bytesTotal, percentage + "%")
+    },
+    onSuccess: function() {
+        console.log(`Download ${upload.file.name} from ${upload.url}` )
+    }
+})
+
+// Start the upload
+upload.start()
+```
 
 ## API
 
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
-    
-| Property | Default | Description |
-| --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
+`nativesctipt-tus-plugin` implements a very limited subset of the [JS api](https://github.com/tus/tus-js-client).
 
 ## Test server
 
-We included a tus test server that will run at http://127.0.0.1:1080.
+We included a tus test server. Remember to change the host in `test-server/index.js`:
+
+```javascript
+const host = '192.168.1.118';
+```
+
+then:
 
 ```
 cd test-server
 npm run start
 ```
+
+You will have to change the host in the demo app at `demo/app/home/home-page.ts` too.
     
 ## Credits
 

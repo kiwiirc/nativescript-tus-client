@@ -22,7 +22,6 @@ export function onTap(args: EventData) {
     // Create a new tus upload
     var upload = new tus.Upload(file, {
         endpoint: "http://192.168.1.118:1080/files/",
-        retryDelays: [0, 3000, 5000, 10000, 20000],
         metadata: {
             filename: 'test_image.png',
             filetype: 'image/png'
