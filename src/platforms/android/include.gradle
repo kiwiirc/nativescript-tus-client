@@ -8,6 +8,6 @@ dependencies {
     // Describe plugin native Android dependencies like
 	// implementation "groupName:pluginName:ver" 
     // EXAMPLE: implementation "com.facebook.fresco:fresco:0.9.0+"
+    implementation "io.tus.java.client:tus-java-client:0.4.2"
     implementation "io.tus.android.client:tus-android-client:0.1.9"
-    implementation "com.facebook.fresco:fresco:0.9.0+"
 }

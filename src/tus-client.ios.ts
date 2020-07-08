@@ -7,11 +7,11 @@ export class Upload extends UploadCommon {
     private tusSession: TUSResumableUpload;
 
     constructor(file: File, options: UploadOptions) {
-        const UPLOAD_PATH = "tus_upload";
         super(file, options);
+        const UPLOAD_PATH = "tus_upload";
 
-        if (!File.exists(this.file.path)) {
-            this.options.onError(new Error(`File ${this.file} does not exist`));
+        if (!File.exists(this.file.path) || file.size === 0) {
+            this.options.onError(new Error(`File ${this.file} does not exist or is empty`));
             return;
         }
 

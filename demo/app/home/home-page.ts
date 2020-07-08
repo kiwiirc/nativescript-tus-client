@@ -17,7 +17,7 @@ export function onTap(args: EventData) {
 
     const appFolder: Folder = <Folder>knownFolders.currentApp();
     
-    const file: File = File.fromPath(appFolder.path + 'assets/test_image.png');
+    const file: File = File.fromPath(appFolder.path + '/assets/test_image.png');
 
     // Create a new tus upload
     var upload = new tus.Upload(file, {
