@@ -38,7 +38,7 @@ global.onmessage = function (msg) {
   console.log('---- received msg', msg.data);
   const action = msg.data.action;
 
-  if (action === 'start' && currentState === 'INIT') {
+  if (action === 'start') {
     start(msg.data);
   }
   else if (action === 'nextChunk' && currentState === 'UPLOADING') {
@@ -46,7 +46,7 @@ global.onmessage = function (msg) {
   }
 
   else if (action === 'abort') {
-    cleanup();
+    done();
   }
 };
 
@@ -77,7 +77,7 @@ function start({filepath, endpoint, metadata, headers}) {
     uploader.setChunkSize(32 * 1024);
   } catch (ex) {
     global.postMessage({action: 'error', error: ex.message || ex });
-    cleanup();
+    done();
     return;
   }
   currentState = "UPLOADING";
@@ -101,7 +101,7 @@ function uploadChunk() {
     }
   } catch(ex) {
     global.postMessage({action: 'error', error: ex.message || ex });
-    cleanup();
+    done();
   }
 
 

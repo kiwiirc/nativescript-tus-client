@@ -6,8 +6,16 @@
         <Label text="Home"></Label>
     </ActionBar>
 
-    <GridLayout rows="* auto auto *">
-        <Button row="1" tap="onTap" text="start upload!"></Button>
-        <Progress row="2" width="100%" value="{{ progressValue }}"  maxValue="100" loaded="onProgressLoaded" />
-    </GridLayout>
+    <StackLayout rows="* auto auto *" columns="* *">
+        <Button tap="startUpload1" text="start upload 1"></Button>
+        <Button tap="startUpload2" text="start upload 2"></Button>
+        <Button tap="startUpload3" text="start upload 3"></Button>
+        <Button tap="startUpload4" text="start upload 4"></Button>
+        <Button tap="startUpload5" text="start upload 5"></Button>
+        <Button tap="startUpload6" text="start upload 6"></Button>
+        <!-- <Button tap="startUpload7" text="start upload 7"></Button>
+        <Button tap="startUpload8" text="start upload 8"></Button> -->
+        <Button tap="testAbort" text="test abort"></Button>
+        <Progress colSpan="2" row="2" width="100%" value="{{ progressValue }}"  maxValue="100" loaded="onProgressLoaded" />
+    </StackLayout>
 </Page>
