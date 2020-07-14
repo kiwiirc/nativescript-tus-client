@@ -9,11 +9,13 @@ import { HomeViewModel } from "./home-view-model";
 export function onNavigatingTo(args: NavigatedData) {
     const page = <Page>args.object;
 
-    page.bindingContext = new HomeViewModel();
 }
 
 export function startUpload1(args: EventData) {
-    upload( <Button>args.object, 1);
+    const button = <Button>args.object;
+    upload( button, 1);
+
+    button.setProperty('background', "linear-gradient(to right, #34da26 60%, #f3e7fb 60%)");
 }
 export function startUpload2(args: EventData) {
     upload( <Button>args.object, 2);
@@ -57,7 +59,7 @@ function upload(button: Button, i: number){
         onProgress: function(bytesUploaded, bytesTotal) {
             var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
             console.log('startUpload', bytesUploaded, bytesTotal, percentage + "%")
-            button.page.bindingContext.set('progressValue', percentage)
+            button.setProperty('background', "linear-gradient(to right, #34da26 " + percentage + "%, #f3e7fb " + percentage + "%)");
         },
         onSuccess: function() {
             console.log("startUpload Upload done!");
@@ -90,7 +92,7 @@ export function testAbort(args: EventData) {
         onProgress: function(bytesUploaded, bytesTotal) {
             var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
             console.log('testAbort', bytesUploaded, bytesTotal, percentage + "%")
-            button.page.bindingContext.set('progressValue', percentage)
+            button.setProperty('background', "linear-gradient(to right, #34da26 " + percentage + "%, #f3e7fb " + percentage + "%)");
             if ((bytesUploaded / bytesTotal * 100) >= 50) {
                 upload.abort();
             }

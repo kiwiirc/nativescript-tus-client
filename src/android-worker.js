@@ -94,6 +94,7 @@ function uploadChunk() {
 
     console.log('-chunkSize: ' + chunkSize);
     if (chunkSize <= -1 || progress.bytesSent === progress.bytesTotal) {
+      global.postMessage({ action: 'chunkDone', progress: progress });
       done();
     }
     else {

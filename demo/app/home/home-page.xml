@@ -16,6 +16,5 @@
         <!-- <Button tap="startUpload7" text="start upload 7"></Button>
         <Button tap="startUpload8" text="start upload 8"></Button> -->
         <Button tap="testAbort" text="test abort"></Button>
-        <Progress colSpan="2" row="2" width="100%" value="{{ progressValue }}"  maxValue="100" loaded="onProgressLoaded" />
     </StackLayout>
 </Page>

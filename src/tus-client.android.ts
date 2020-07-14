@@ -74,27 +74,18 @@ class UploadManager {
 }
 
 export class Upload extends UploadCommon {
-    // private tusExecutor: NSTusExecutor;
     private abortResolve: (result: any) => any = null;
-    // private worker: any;
 
     protected doAbort: boolean = false;
 
     constructor(file: File, options: UploadOptions) {
         super(file, options);
-
-        // this.tusExecutor = new NSTusExecutor();
-        // this.tusExecutor.nsTusUpload = this;
     }
 
     start(): void {
-        // this.tusExecutor.makeAttempts();
         UploadManager.singleton().addUpload(this);
     }
 
-    // makeAttempt() {
-    //     UploadManager.singleton().addUpload(this);
-    // }
 
     abort(): Promise<void> {
         console.log('called abort()!!!!!!!!!!!!!!!!!');
@@ -153,17 +144,3 @@ export class Upload extends UploadCommon {
         this.options.onError(new Error( error ));
     }
 }
-
-// class NSTusExecutor extends io.tus.java.client.TusExecutor {
-//     private _nsTusUpload :Upload = null;
-
-//     public makeAttempt() {
-//         this._nsTusUpload.startUpload();
-//     }
-
-//     public set nsTusUpload(value : Upload) {
-//         this._nsTusUpload = value;
-//     }
-    
-// }
-
