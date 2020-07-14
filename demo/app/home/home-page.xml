@@ -15,6 +15,6 @@
         <Button tap="startUpload6" text="start upload 6"></Button>
         <!-- <Button tap="startUpload7" text="start upload 7"></Button>
         <Button tap="startUpload8" text="start upload 8"></Button> -->
-        <Button tap="testAbort" text="test abort"></Button>
+        <Button tap="testAbort" text="abort at 50%"></Button>
     </StackLayout>
 </Page>

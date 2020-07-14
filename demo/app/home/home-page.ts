@@ -12,10 +12,7 @@ export function onNavigatingTo(args: NavigatedData) {
 }
 
 export function startUpload1(args: EventData) {
-    const button = <Button>args.object;
-    upload( button, 1);
-
-    button.setProperty('background', "linear-gradient(to right, #34da26 60%, #f3e7fb 60%)");
+    upload(<Button>args.object, 1);
 }
 export function startUpload2(args: EventData) {
     upload( <Button>args.object, 2);
@@ -54,7 +51,7 @@ function upload(button: Button, i: number){
             filetype: 'image/png'
         },
         onError: function(error) {
-            console.log("startUpload Failed because: " + error)
+            console.log("startUpload Failed because: ", error)
         },
         onProgress: function(bytesUploaded, bytesTotal) {
             var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
@@ -87,7 +84,7 @@ export function testAbort(args: EventData) {
             filetype: 'image/png'
         },
         onError: function(error) {
-            console.log("testAbort Failed because: " + error)
+            console.log("testAbort Failed because: ", error)
         },
         onProgress: function(bytesUploaded, bytesTotal) {
             var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)

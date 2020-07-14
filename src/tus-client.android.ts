@@ -1,8 +1,6 @@
 import { UploadCommon, UploadOptions } from './tus-client.common';
 import { File } from "@nativescript/core";
 
-
-
 class UploadManager {
     /* Singleton */
     private static uploadManagerSingleton: UploadManager = null;
@@ -32,7 +30,6 @@ class UploadManager {
         };
 
         this.worker.onerror = (error) => {
-            console.log('worker error: ', error);
             if (this.currentUpload) {
                 this.currentUpload.workerError(error);
             }
@@ -88,7 +85,6 @@ export class Upload extends UploadCommon {
 
 
     abort(): Promise<void> {
-        console.log('called abort()!!!!!!!!!!!!!!!!!');
         this.doAbort = true;
 
         return new Promise((resolve) => {
@@ -98,16 +94,15 @@ export class Upload extends UploadCommon {
 
     fromWorker(msg: any) {
         const action = msg.data.action;
-        console.log('received: ' + action);
 
         switch(action) {
             case 'chunkDone':
                 this.options.onProgress(msg.data.progress.bytesSent, msg.data.progress.bytesTotal);
-                if (!this.doAbort) {
-                    UploadManager.singleton().sendWorker({action: 'nextChunk'});
+                if (this.doAbort) {
+                    UploadManager.singleton().sendWorker({action: 'abort'});
                 }
                 else {
-                    UploadManager.singleton().sendWorker({action: 'abort'});
+                    UploadManager.singleton().sendWorker({action: 'nextChunk'});
                 } 
                 break;
             case 'done':

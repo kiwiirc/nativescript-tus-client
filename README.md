@@ -3,7 +3,9 @@
 This NativeScript plugin for TUS - Open Protocol for Resumable File Uploads.
 Uses [TUSKit (iOS)](https://github.com/tus/TUSKit) and [tus-android-client](https://github.com/tus/tus-android-client).
 
-
+| iOS            | Android     |
+| :------------: | :---------: | 
+| ![iOS demo](./nativescript-tus-client-ios.gif) | ![Android demo](./nativescript-tus-client-android.gif) |
 
 ## Installation
 
@@ -41,11 +43,14 @@ var upload = new tus.Upload(file, {
 
 // Start the upload
 upload.start()
+
+// Abort the upload
+upload.abort()
 ```
 
 ## API
 
-`nativesctipt-tus-plugin` implements a very limited subset of the [JS api](https://github.com/tus/tus-js-client).
+`nativesctipt-tus-plugin` implements a very limited subset of the [JS api](https://github.com/tus/tus-js-client). See the example above as it contains all the implemented API.
 
 ## Test server
 
