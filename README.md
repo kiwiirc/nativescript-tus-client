@@ -1,6 +1,6 @@
 # nativescript-tus-client
 
-This NativeScript plugin for TUS - Open Protocol for Resumable File Uploads.
+NativeScript plugin for TUS - Open Protocol for Resumable File Uploads.
 Uses [TUSKit (iOS)](https://github.com/tus/TUSKit) and [tus-android-client](https://github.com/tus/tus-android-client).
 
 | iOS            | Android     |

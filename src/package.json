@@ -1,7 +1,7 @@
 {
 	"name": "nativescript-tus-client",
 	"version": "1.0.0",
-	"description": "Your awesome NativeScript plugin.",
+	"description": "NativeScript plugin for TUS - Open Protocol for Resumable File Uploads.",
 	"main": "tus-client",
 	"typings": "index.d.ts",
 	"nativescript": {
@@ -31,17 +31,19 @@
 		"NativeScript",
 		"JavaScript",
 		"Android",
-		"iOS"
+		"iOS",
+		"TUS",
+		"upload"
 	],
 	"author": {
-		"name": "Your Name",
-		"email": "youremail@yourdomain.com"
+		"name": "Tiago Alves",
+		"email": "tralves@gmail.com"
 	},
 	"bugs": {
-		"url": "https://github.com/tralves/nativescript-tus-client/issues"
+		"url": "https://github.com/kiwiirc/nativescript-tus-client/issues"
 	},
 	"license": "Apache-2.0",
-	"homepage": "https://github.com/tralves/nativescript-tus-client",
+	"homepage": "https://github.com/kiwiirc/nativescript-tus-client",
 	"devDependencies": {
 		"tns-core-modules": "^6.0.0",
 		"tns-platform-declarations": "^6.0.0",
