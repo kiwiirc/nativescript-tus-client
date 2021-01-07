@@ -29,6 +29,9 @@ var upload = new tus.Upload(file, {
         filename: 'test_image.png',
         filetype: 'image/png'
     },
+    headers: {
+        Authorization: "Basic YWxhZGRpbjpvcGVuc2VzYW1l"
+    },
     onError: function(error) {
         console.log("Failed because: " + error)
     },
