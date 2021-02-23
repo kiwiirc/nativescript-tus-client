@@ -1,1 +1,1 @@
-pod "TUSKit"
+pod "TUSKit", "~> 1.4.2"

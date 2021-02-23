@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "nativescript-dev-webpack": "~1.5.0",
+    "tns-ios": "6.5.0",
     "typescript": "~3.5.3"
   },
   "gitHead": "20a65d338ae8f8911087ab6615b89363f864b07b",

@@ -3964,6 +3964,11 @@ tns-core-modules@~6.5.0:
   dependencies:
     "@nativescript/core" "*"
 
+tns-ios@6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/tns-ios/-/tns-ios-6.5.0.tgz#2e1bcbf2a5165fa25cb5487503dfa0a385e2f3e4"
+  integrity sha512-b/Mvj6SHNiwy7VjT8Don+DcdNPClm2D4WQl5G/0hQzhis68kn0BE0cCE/KJVxRsffWE+ncq2z0xng6yUY4lj5w==
+
 to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"

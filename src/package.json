@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-tus-client",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "NativeScript plugin for TUS - Open Protocol for Resumable File Uploads.",
 	"main": "tus-client",
 	"typings": "index.d.ts",
@@ -16,11 +16,10 @@
 	},
 	"scripts": {
 		"tsc": "npm i && tsc",
-		"build": "npm run tsc && npm run build.native",
-		"build.native": "node scripts/build-native.js",
+		"build": "npm run tsc",
 		"tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
 		"ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
-		"prepack": "npm run build.native",
+		"prepack": "npm run build",
 		"demo.ios": "npm i && cd ../demo && tns run ios",
 		"demo.android": "npm i && cd ../demo && tns run android",
 		"demo.reset": "cd ../demo && npx rimraf -- hooks node_modules platforms package-lock.json",
